@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CURT Manufacturing Developer Code Challenge</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+<body>
+<h2>CURT Manufacturing Developer Code Challenge: Rudy Lopes</h2>
+<p>
+	Click the button to generate a list of the first 1,000 prime numbers.&nbsp;
+    <button onClick='getPrimes()'>Primes</button>
+</p>
+<h4 id="myprimes"></h4>
+
+<script type="text/javascript">
+	function getPrimes() {
+		$.post("primes.php",function(result){
+			var primes = result.split(",");
+			var text = "<p>";
+			var i;
+			for (i = 0; i < primes.length; i++) {
+				text += "<span class='label label-success' style='margin:0 3px;'>" + primes[i] + "</span>";
+				if ((i % 25)==24) { // break for each 25 primes
+					text += "<br><br>";
+				}
+			}
+			text += "</p>";
+			$("#myprimes").html(text);
+		})
+	}
+</script>
+</body>
+</html>

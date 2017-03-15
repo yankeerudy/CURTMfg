@@ -6,19 +6,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+
 <body>
-<h2>CURT Manufacturing Developer Code Challenge: Rudy Lopes</h2>
-<p>
-	Click the button to generate a list of the first 1,000 prime numbers.&nbsp;
-    <button onClick='getPrimes()'>Primes</button>
-</p>
-<h4 id="myprimes"></h4>
+    <div class="jumbotron text-center">
+        <h2>CURT Manufacturing Developer Code Challenge: Rudy Lopes</h2>
+        <p>
+            Click the button to generate a list of the first 1,000 prime numbers.&nbsp;
+            <button onClick='getPrimes()'>Primes</button>
+        </p>
+    </div>
+
+	<div class="container">
+	    <h4 id="myprimes"></h4>
+	</div>
+</body>
 
 <script type="text/javascript">
 	function getPrimes() {
 		$.post("primes.php",function(result){
 			var primes = result.split(",");
-			var text = "<p>";
+			var text = "";
 			var i;
 			for (i = 0; i < primes.length; i++) {
 				text += "<span class='label label-success' style='margin:0 3px;'>" + primes[i] + "</span>";
@@ -26,10 +34,8 @@
 					text += "<br><br>";
 				}
 			}
-			text += "</p>";
 			$("#myprimes").html(text);
 		})
 	}
 </script>
-</body>
 </html>
